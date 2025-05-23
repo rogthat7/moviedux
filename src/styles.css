@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    max-height: fit-content;
+    margin: 0 auto;
+}
+.app-header {
+    margin-top: 50px;
+}
+
+.search-input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: none;
+    background-color: #444;
+    color: #fff;
+}
+
+.app-footer {
+    margin-bottom: 10px;
+}
+
+.movie-card {
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.25);
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-card:not(:hover) {
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-rating.very-good {
+    color: #0f0;
+}
+.movie-rating.good {
+    color: rgb(214, 156, 38);
+}
+.movie-rating.average {
+    color: #19aa8d;
+}
+.movie-rating.bad {
+    color: #f00;
+}
+.movie-rating.not-rated {
+    color: #888;
+}
