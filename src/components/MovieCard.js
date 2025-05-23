@@ -21,17 +21,19 @@ export default function MovieCard({ movie }) {
     }
   };
   return (
-    <Card className="movie-card" style={{ height: "100%" }}>
+    <Card
+      className="movie-card"
+      style={{ height: "340px", width: "220px", backgroundColor: "#f5f5f5" }}
+    >
       <CardMedia
         component="img"
         alt={movie.title}
-        height="140"
         image={`images/${movie.image}`}
         title={movie.title}
         onError={handleError}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
+      <CardContent sx={{ textAlign: "center" }}>
+        <Typography variant="h6" component="div">
           {movie.title}
         </Typography>
         <Typography variant="body2" color="textSecondary">
