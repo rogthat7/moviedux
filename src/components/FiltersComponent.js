@@ -9,10 +9,10 @@ export default function FiltersComponent({
       <Box
         display={"flex"}
         justifyContent={"end"}
-        alignItems={"left"}
+        alignItems={"end"}
         flexDirection={"row"}
         gap={5}
-        sx={{ marginLeft: "20px" }}
+        sx={{ marginLeft: "20px", marginBottom: "20px" }}
       >
         <FormControl fullWidth>
           <InputLabel
@@ -32,9 +32,7 @@ export default function FiltersComponent({
             color="secondary"
             sx={{ textDecorationColor: "#fff" }}
           >
-            <option selected value="all-genres">
-              All Genres
-            </option>
+            <option value="all-genres">All Genres</option>
             <option value="action">Action</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>

@@ -9,9 +9,8 @@ export default function SearchInput({ handleSearchChange, search }) {
       placeholder="Its time for popcorn, find your next movie here!"
       style={{
         backgroundColor: "white",
-        marginBottom: "20px",
         borderRadius: "24px",
-        padding: "10px 20px",
+        padding: "10px ",
         width: "100%",
         maxWidth: "600px",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",

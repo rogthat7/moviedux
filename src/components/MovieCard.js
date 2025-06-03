@@ -1,8 +1,15 @@
 import React from "react";
 import "../styles.css";
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Box,
+  Switch,
+} from "@mui/material";
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, isWatchlisted, toggleWatchlist }) {
   const handleError = (e) => {
     e.target.src = "images/default.png";
   };
@@ -23,7 +30,7 @@ export default function MovieCard({ movie }) {
   return (
     <Card
       className="movie-card"
-      style={{ height: "340px", width: "220px", backgroundColor: "#f5f5f5" }}
+      style={{ width: "220px", borderRadius: "10px" }}
     >
       <CardMedia
         component="img"
@@ -32,22 +39,32 @@ export default function MovieCard({ movie }) {
         title={movie.title}
         onError={handleError}
       />
-      <CardContent sx={{ textAlign: "center" }}>
+      <CardContent
+        sx={{
+          textAlign: "center",
+          padding: 0,
+          color: "white",
+          backgroundColor: "#1F1F1F",
+          fontFamily: "Poppins, sans-serif",
+        }}
+      >
         <Typography variant="h6" component="div">
           {movie.title}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
-          Genre: {movie.genre}
-        </Typography>
-        <Typography className={`movie-rating`} variant="body2">
-          Rating:{" "}
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <span color="textSecondary">{movie.genre}</span>
           <span
             className={`movie-rating ${getRatingClass(Number(movie.rating))}`}
           >
             {movie.rating}
-          </span>{" "}
-          / 10
-        </Typography>
+          </span>
+        </Box>
+        <Switch
+          color="secondary"
+          onChange={toggleWatchlist}
+          defaultChecked={isWatchlisted}
+          name={isWatchlisted ? "Remove from watchlist" : "Add to watchlist"}
+        />
       </CardContent>
     </Card>
   );

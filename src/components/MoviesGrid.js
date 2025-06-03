@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, Box } from "@mui/material";
 import "../styles.css";
 import MovieCard from "./MovieCard";
-import SearchInput from "./SearchInput";
 import FiltersComponent from "./FiltersComponent";
 
-export default function MoviesGrid() {
-  const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState("");
+export default function MoviesGrid({
+  movies,
+  watchlist,
+  toggleWatchlist,
+  search,
+}) {
   const [genre, setGenre] = useState("all-genres");
   const [rating, setRating] = useState("all-ratings");
-  useEffect(() => {
-    fetch("movies.json")
-      .then((res) => res.json())
-      .then((data) => setMovies(data));
-  }, []);
 
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-  };
   const handleGenreChange = (e) => {
     setGenre(e.target.value);
   };
@@ -60,7 +54,7 @@ export default function MoviesGrid() {
   return (
     <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
       <Box sx={{ display: "flex", justifyContent: "center", gap: 5 }}>
-        <SearchInput handleSearchChange={handleSearchChange} />
+        {/* <SearchInput handleSearchChange={handleSearchChange} /> */}
         <FiltersComponent
           handleGenreChange={handleGenreChange}
           handleRatingChange={handleRatingChange}
@@ -76,7 +70,12 @@ export default function MoviesGrid() {
       >
         {filteredMovies.map((movie) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-            <MovieCard movie={movie} key={movie.id} />
+            <MovieCard
+              movie={movie}
+              key={movie.id}
+              toggleWatchlist={toggleWatchlist}
+              isWatchlisted={watchlist.includes(movie.id)}
+            />
           </Grid>
         ))}
       </Grid>
