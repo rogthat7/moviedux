@@ -20,10 +20,12 @@ function App() {
   }, []);
 
   const toggleWatchlist = (movieId) => {
+    console.log(`Toggling watchlist for movie ID: ${movieId}`);
+    
     setWatchlist((prev) =>
       prev.includes(movieId)
         ? prev.filter((id) => id !== movieId)
-        : [...prev, movieId]
+        : [...prev, movieId] 
     );
   };
   const handleSearchChange = (event) => {

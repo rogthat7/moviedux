@@ -1,32 +1,19 @@
-import React from "react";
 import "../styles.css";
+import getRatingClass from "./utils/GetRatingClass";
 import {
   Card,
   CardMedia,
   CardContent,
   Typography,
   Box,
-  Switch,
 } from "@mui/material";
+import { useLocation } from "react-router";
 
 export default function MovieCard({ movie, isWatchlisted, toggleWatchlist }) {
   const handleError = (e) => {
     e.target.src = "images/default.png";
   };
-  const getRatingClass = (rating) => {
-    switch (true) {
-      case rating > 8.5:
-        return "very-good";
-      case rating > 7.5 && rating <= 8.5:
-        return "good";
-      case rating > 6.5 && rating <= 7.5:
-        return "average";
-      case rating <= 6.5:
-        return "bad";
-      default:
-        return "not-rated";
-    }
-  };
+    const location = useLocation();
   return (
     <Card
       className="movie-card"
@@ -44,7 +31,7 @@ export default function MovieCard({ movie, isWatchlisted, toggleWatchlist }) {
           textAlign: "center",
           padding: 0,
           color: "white",
-          backgroundColor: "#1F1F1F",
+          backgroundColor: "#1f1f1fe6",
           fontFamily: "Poppins, sans-serif",
         }}
       >
@@ -59,12 +46,13 @@ export default function MovieCard({ movie, isWatchlisted, toggleWatchlist }) {
             {movie.rating}
           </span>
         </Box>
-        <Switch
-          color="secondary"
-          onChange={toggleWatchlist}
-          defaultChecked={isWatchlisted}
-          name={isWatchlisted ? "Remove from watchlist" : "Add to watchlist"}
-        />
+        <button
+        style={{ width: "100%", marginTop: "10px" , alignSelf:"center" ,textAlign: "center", padding: "10px", borderRadius: "5px", backgroundColor: isWatchlisted && location.pathname === '/watchlist' ? "#ff4081" : "#3f51b5", color: "white", border: "none", cursor: "pointer" }}
+          className={`watchlist-button ${isWatchlisted ? 'added' : ''}`}
+          onClick={()=>toggleWatchlist(movie.id)}
+        >
+          {isWatchlisted ? location.pathname === '/watchlist' ? 'Remove': '✓ Added' : '+ Add to Watchlist'}
+        </button>
       </CardContent>
     </Card>
   );
